@@ -14,8 +14,6 @@ app.use('/', api)
 
 
 
-
-
 app.post("/validation",[validationMiddleware],async(req, res) => {
     res.json("clear with all validation")
 })

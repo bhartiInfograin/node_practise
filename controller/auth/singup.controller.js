@@ -2,5 +2,8 @@
 
 
 exports.singup = async(req,res) => {
-   res.json("dfdfdf")
+   // username
+   //fullname
+   //email //email allready exist
+   //password .. password must be content 6 character
 }
