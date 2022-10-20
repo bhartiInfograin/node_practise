@@ -1,9 +1,20 @@
+const authServices = require("../../services/auth.services")
 
-
-
-exports.singup = async(req,res) => {
-   // username
-   //fullname
-   //email //email allready exist
-   //password .. password must be content 6 character
+const signup = {
+   index: async (req, res) => {
+      const data = {
+         userName,
+         fullname,
+         email,
+         password,
+         confirmPassword
+      } = req.body
+      const _authServices = await authServices.signUp(data)
+       if(_authServices){
+         res.json(_authServices)
+       }
+   }
 }
+
+
+module.exports = signup
