@@ -6,10 +6,20 @@ const follow = {
         const data = {
             userId,
             followerId,
-            statusType
         } = req.body
 
         const _followServices = await followServices.follow(data)
+        if (_followServices) {
+            res.json(_followServices)
+        }
+    },
+    followRequest: async (req, res) => {
+        const data = {
+            userId,
+            followingId,
+            _isConfirmed
+        }=req.body
+        const _followServices = await followServices.followRequest(data);
         if (_followServices) {
             res.json(_followServices)
         }

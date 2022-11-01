@@ -19,10 +19,9 @@ const UserSchema = mongoose.Schema({
     trim: true,
     required: true
   },
-  confirmPassword: {
-    type: String,
-    trim: true,
-    required: true
+  isprivate:{
+    type:Boolean,
+    default:false
   },
   followerCount: {
     type: Number,

@@ -13,6 +13,7 @@ const upload = require("../middleware/uploads")
 router.post('/signup',[authValidation.signUpValidation],signup.index);
 router.post('/login',[authValidation.loginValidation],login.index);
 router.post('/follow',follow.index);
+router.post("/followrequest",follow.followRequest);
 router.post('/post',upload.array("postContent[]"),post.index);
 router.get('/postlist',post.postList)
 router.post('/comment',comment.index);

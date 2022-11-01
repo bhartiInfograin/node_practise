@@ -18,7 +18,7 @@ const auth = {
                     fullname: data.fullname,
                     email: data.email,
                     password: bcryptPassword,
-                    confirmPassword: data.confirmPassword
+                    isprivate:data.isprivate
                 }
                 const userData = new UserModel(param);
                 const res = await userData.save()

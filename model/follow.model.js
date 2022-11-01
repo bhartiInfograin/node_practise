@@ -11,7 +11,6 @@ const FollowSchema = mongoose.Schema({
     },
     statusType:{
         type:String,
-        required:true
     }
 }, { timestamps: true });
 

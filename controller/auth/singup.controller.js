@@ -7,7 +7,8 @@ const signup = {
          fullname,
          email,
          password,
-         confirmPassword
+         confirmPassword,
+         isprivate
       } = req.body
       const _authServices = await authServices.signUp(data)
        if(_authServices){
