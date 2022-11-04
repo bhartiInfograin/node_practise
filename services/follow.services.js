@@ -2,9 +2,7 @@ const FollowModel = require('../model/follow.model');
 const UserModel = require('../model/auth/user.model');
 
 
-
 const follow = {
-
     follow: async (data) => {
         try {
             let param = {
@@ -51,7 +49,6 @@ const follow = {
         } catch (error) {
             return error
         }
-
     },
 
     followRequest: async (data) => {
@@ -74,7 +71,7 @@ const follow = {
                     }
                 }
                 if (data._isConfirmed == false) {
-                    // delet entry of these users
+                    // delete entry of these users
                     const _checkFollow = await FollowModel.findOneAndDelete({ $and: [{ followerId: { $eq: data.userId } }, { userId: { $eq: data.followingId  } }] });
                   if(_checkFollow){
                     return {statusCode: 200, statusMsg: "request deleted"}
@@ -88,6 +85,7 @@ const follow = {
 }
 
 module.exports = follow;
+
 
 
 
