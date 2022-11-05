@@ -1,5 +1,7 @@
+
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const UserModel = require('../model/auth/user.model');
 
 passport.use(
     new GoogleStrategy({
@@ -7,20 +9,43 @@ passport.use(
         clientSecret: "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",
         callbackURL: "/auth/google/callback"
     },
-        function (accessToken, refreshToken, profile, done) {
-            console.log("access token", accessToken);
-            console.log("refress token", refreshToken);
-            console.log("profile", profile);
-            console.log("done", done)
-            done(null,profile);
+        async function (accessToken, refreshToken, profile, done) {
+            const proDetails = profile._json;
+            const _exisUser = await UserModel.findOne({ "googleId": proDetails.sub })
+            if (!_exisUser) {
+                const param = {
+                    googleId: proDetails.sub,
+                    userName: proDetails.given_name,
+                    fullname: proDetails.name,
+                    email: proDetails.email,
+                }
+                const userdata = new UserModel(param)
+                const res = await userdata.save()
+            }
+           const demo = "bharti"
+        
+            done(null, demo);
         }
     )
 )
 
-passport.serializeUser(function (user, cb) {
-    cb(null, user);
+// passport.serializeUser(function (user, cb) {
+//     console.log("user",user)
+//     cb(null, user);
+// });
+
+// passport.deserializeUser(function (obj, cb) {
+//     console.log("obj",obj)
+//     cb(null, obj);
+// });
+
+
+passport.serializeUser((user, done) => {
+    console.log("done",done)
+    console.log("user",user)
+    done(null, user);
 });
 
-passport.deserializeUser(function (obj, cb) {
-    cb(null, obj);
+passport.deserializeUser((user, done) => {
+    done(null, user);
 });

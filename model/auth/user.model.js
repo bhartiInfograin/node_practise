@@ -20,7 +20,7 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     trim: true,
-    required: true
+    // required: true
   },
   isprivate:{
     type:Boolean,

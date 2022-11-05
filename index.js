@@ -5,19 +5,23 @@ const dbConnect = require('./helper/database');
 const api = require("./router/api.router");
 const bodyParser = require('body-parser');
 const validationMiddleware = require('./middleware/testValidation')
+const session = require('express-session');
 const passport = require('passport');
 require('./middleware/passport');
-const session = require('express-session');
+
 
 dotenv.config();
 
 
-
+app.use(session({
+    secret: "cookie_secret",
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/', api);
 app.use("/upload",express.static('upload'));
-app.use(session({ secret: 'SECRET' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
